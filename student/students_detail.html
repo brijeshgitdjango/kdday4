@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %} Details | {{block.super}} {% endblock title %}
+{% block head_extra %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/list.css' %}">
+{% endblock head_extra %}
+{% block content %}
+<br><br>
+<center><h1 class="heading-menu">{{ title }}</h1></center><br>
+{% if instance %}
+
+<div class="container">
+		
+	<div>
+		<table class="table offset-ml-3">
+			<tr>
+				<th>Name</th>
+				<td>{{instance.name}}</td>
+			</tr>
+
+			<tr>
+				<th>Roll No.</th>
+				<td>{{instance.rollno}}</td>
+			</tr>
+
+			<tr>
+				<th>Date Of Birth</th>
+				<td>{{instance.dob}}</td>
+			</tr>
+
+			<tr>
+				<th>Session</th>
+				<td>{{instance.session}}</td>
+			</tr>
+
+			<tr>
+				<th>Gender</th>
+				<td>{{instance.gender}}</td>
+			</tr>
+
+			<tr>
+				<th>Branch</th>
+				<td>{{instance.branch}}</td>
+			</tr>
+
+			<tr>
+				<th>Year</th>
+				<td>{{instance.year}}</td>
+			</tr>
+
+			<tr>
+				<th>Registered on</th>
+				<td>{{instance.timestamp}}</td>
+			</tr>
+
+			<tr>
+				<th>Last updated</th>
+				<td>{{instance.updated}}</td>
+			</tr>
+
+			<tr>
+				<th>Mobile No.</th>
+				<td>{{instance.mobile}}</td>
+			</tr>
+
+			<tr>
+				<th>Email</th>
+				<td>{{instance.email}}</td>
+			</tr>
+
+			<tr>
+				<th>Address</th>
+				<td>{{instance.address}}</td>
+			</tr>
+
+			<tr>
+				<th>Fees Paid</th>
+				<td>{{instance.fees_paid}}</td>
+			</tr>
+
+			<tr>
+				<th>Fully_paid</th>
+				<td>{% if instance.fully_paid %}<p class="yes"><b>Yes</b></p>{% else %}<p class="no"><b>No</b></p>{% endif %}</td>
+			</tr>
+
+			<tr>
+				<th>Room No.</th>
+				<td>{{instance.roomno}}</td>
+			</tr>
+
+			<tr>
+				<th>Bed No.</th>
+				<td>{{instance.bedno}}</td>
+			</tr>
+		</table>
+		<hr>
+		{% if user.is_authenticated %}
+		<center>
+			<a href="{% url 'students:edit' id=instance.id %}" class="btn btn-warning">Edit details</a>
+			<a href="{% url 'students:delete' id=instance.id %}" class="btn btn-danger">Delete</a>
+			<br><br>
+		</center>
+		{% endif %}
+	</div>
+</div>
+
+{% endif %}
+<style type="text/css">
+	.yes{
+		color:green;
+	}
+	.no{
+		color:red;
+	}
+
+</style>
+
+{% endblock content %}

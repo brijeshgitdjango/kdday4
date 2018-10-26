@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %} Details | {{block.super}} {% endblock title %}
+{% block head_extra %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/list.css' %}">
+{% endblock head_extra %}
+{% block content %}
+<br><br>
+<center><h1 class="heading-menu">Sorry, Student Does Not Exist</h1><br><br>
+<a href="{% url 'students:add' %}" class="btn btn-primary">Add more students</a></li>
+
+<br>
+</center>
+{% endblock content %}

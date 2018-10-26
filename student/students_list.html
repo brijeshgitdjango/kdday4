@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %} Students | {{block.super}} {% endblock title %}
+{% block head_extra %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/list.css' %}">
+{% endblock head_extra %}
+{% block content %}
+<br><br>
+<center><h1 class="heading-menu">{{title}}</h1></center><br>
+
+
+<div class="container">
+		
+	<div>
+		{% if obj_list %}
+
+			<table class="table" id="behind">
+				<tr>
+					<th><b>Name</b></th>
+					<th ><b>Roll No</b></th>
+					<th><b>Pending Fees</b></th>
+					<th><b>Mobile</b></th>
+				</tr>
+				{% for instance in obj_list %}
+					<tr>
+						<td><a href="{% url 'students:detail' id=instance.id %}">{{instance.name}}</a></td>
+
+						<td>{{instance.rollno}}</td>
+						<td>{{instance.pending_fees}}</td>
+						<td>{{instance.mobile}}</td>
+
+					</tr>
+				{% endfor %}
+			</table>
+
+		{% else %} 
+			No students added yet.
+		{% endif %}
+	</div>
+</div>
+{% endblock content %}

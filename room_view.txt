@@ -1,0 +1,37 @@
+from students.models import Student
+
+def RoomDeleteView(request, id=None):
+	instance = get_object_or_404(Room, id=id)
+	if request.method=="POST":
+		bed = get_object_or_404(Bed, room_id=instance)
+		if bed.A:
+			s_obj = get_object_or_404(Student, mobile=bed.a_allocated_to)
+			s_obj.roomno=None
+			s_obj.bedno=None
+			s_obj.save()
+		if bed.B:
+			s_obj = get_object_or_404(Student, mobile=bed.b_allocated_to)
+			s_obj.roomno=None
+			s_obj.bedno=None
+			s_obj.save()
+		if bed.C:
+			s_obj = get_object_or_404(Student, mobile=bed.c_allocated_to)
+			s_obj.roomno=None
+			s_obj.bedno=None
+			s_obj.save()
+		if bed.D:
+			s_obj = get_object_or_404(Student, mobile=bed.d_allocated_to)
+			s_obj.roomno=None
+			s_obj.bedno=None
+			s_obj.save()
+
+		instance.delete()
+		return HttpResponseRedirect(reverse("room:room_list"))
+
+
+	context = {
+		'instance':instance,
+		'title':'Room',
+		'data':instance.roomno,
+	}
+	return render(request, 'room/delete.html' ,context)

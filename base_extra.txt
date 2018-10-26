@@ -1,0 +1,19 @@
+{% if user.is_authenticated %}
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        Student
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{% url 'students:list' %}">Student List</a>
+          <a class="dropdown-item" href="{% url 'students:pending_list' %}">Pending Fees Student List</a>
+          <a class="dropdown-item" href="{% url 'students:add' %}">Add Student</a>
+        </div>
+        </li>
+        {% endif %}
+
+
+        <form class="form-inline" action="{% url 'students:search' %}" method="post">
+          {% csrf_token %}
+          <input class="form-control mr-sm-2" name="mobile" type="text" placeholder="Search student by mobile">
+          <button class="btn btn-success" type="submit">Search</button>
+        </form>
